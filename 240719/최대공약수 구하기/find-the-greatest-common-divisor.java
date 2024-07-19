@@ -27,7 +27,11 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         
-        System.out.println(getGreatestCommonDivisor(n,m));
+        if(n >= m){
+            System.out.println(getGreatestCommonDivisor(n,m));
+        } else {
+            System.out.println(getGreatestCommonDivisor(m,n));
+        }
     }
 
     private static int getGreatestCommonDivisor(int a, int b){
@@ -37,20 +41,11 @@ public class Main {
         
         // 재귀를 끝내기 위한 조건
         // a 혹은 b가 0일 때
-        if(a == 0 || b == 0){
-            if(a == 0) return b;
-            else return a;
+        if(b == 0){
+            return a;
         }
 
-        // 만약 a가 b보다 크다면
-        // a를 b로 나눠주고
-        if(a >= b){
-            return getGreatestCommonDivisor(b, a%b);
-        }
-        // 반대라면
-        // b를 a로 나눠준다.
-        else{
-            return getGreatestCommonDivisor(a,b%a);
-        }
+        return getGreatestCommonDivisor(b, a%b);
     }
+
 }
