@@ -54,7 +54,7 @@ public class Main {
     private static int sumPrime(int a, int b){
         int ans = 0;
         for(int i = a; i <= b; i++){
-            if(!isPrime[i]) {
+            if(i>=2 && !isPrime[i]) {
                 // System.out.println("i: "+i);
                 ans += i;
             }
