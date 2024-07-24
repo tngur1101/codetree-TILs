@@ -32,10 +32,14 @@ public class Main {
         }
 
         int startIdx = getStartIdx();
-        if(startIdx != -1){
-            putArr(startIdx);
-            if(isAnswer()) System.out.println("Yes");
-            else System.out.println("No");
+        if(n1 >= n2){
+            if(startIdx != -1){
+                putArr(startIdx);
+                if(isAnswer()) System.out.println("Yes");
+                else System.out.println("No");
+            } else {
+                System.out.println("No");
+            }
         } else {
             System.out.println("No");
         }
