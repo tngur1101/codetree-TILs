@@ -6,7 +6,7 @@ public class Main {
     static int n1, n2;
     static int[] n1Arr;
     static int[] n2Arr;
-    static int[] sliceArr;
+    
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,7 +19,7 @@ public class Main {
 
         n1Arr = new int[n1];
         n2Arr = new int[n2];
-        sliceArr = new int[n2];
+        
 
         st = new StringTokenizer(br.readLine());
         for(int i = 0; i < n1; i++){
@@ -31,40 +31,24 @@ public class Main {
             n2Arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int startIdx = getStartIdx();
-        if(n1 >= n2){
-            if(startIdx != -1){
-                putArr(startIdx);
-                if(isAnswer()) System.out.println("Yes");
-                else System.out.println("No");
-            } else {
-                System.out.println("No");
-            }
-        } else {
-            System.out.println("No");
-        }
+        if(isSubsequence()) System.out.println("Yes");
+        else System.out.println("No");
 
     }
 
-    private static int getStartIdx(){
-        for(int i = 0; i < n1Arr.length; i++){
-            if(n1Arr[i] == n2Arr[0]) return i;
+    private static boolean isSame(int n){
+        for(int i = 0; i < n2; i++){
+            if(n1Arr[i + n] != n2Arr[i]) return false;
         }
-
-        return -1;
-    }
-
-    private static boolean isAnswer(){
-        for(int i = 0; i < n2Arr.length; i++){
-            if(n2Arr[i] != sliceArr[i]) return false;
-        }
-
         return true;
     }
 
-    private static void putArr(int idx){
-        for(int i = 0; i < n2Arr.length; i++){
-            sliceArr[i] = n1Arr[idx++];
+    private static boolean isSubsequence(){
+        for(int i = 0; i <= n1-n2; i++){
+            if(isSame(i)) return true;
         }
+        return false;
     }
+
+    
 }
