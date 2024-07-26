@@ -30,7 +30,7 @@ public class Main {
                 // System.out.println("i: "+i);
 
                 // obj의 길이만큼 돌면서 체크
-                for(int j = 1; j < obj.length; j++){
+                for(int j = 0; j < obj.length; j++){
                     // 만약 i+j가 origin.length 이상이면 break
                     if(i+j > origin.length) break;
                     if(origin[i+j] != obj[j]) break;  
