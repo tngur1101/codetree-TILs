@@ -32,7 +32,7 @@ public class Main {
                 // obj의 길이만큼 돌면서 체크
                 for(int j = 0; j < obj.length; j++){
                     // 만약 i+j가 origin.length 이상이면 break
-                    if(i+j > origin.length) break;
+                    if(i+j > origin.length-1) break;
                     if(origin[i+j] != obj[j]) break;  
                     if(i+j == i+obj.length-1) {
                         idx = i;
