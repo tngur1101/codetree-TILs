@@ -161,7 +161,7 @@ public class Main {
 		}
     }
 
-    private static void check(int r, int c, int v){
+    private static void check(int x, int y, int v){
         visited[x][y] = true;
 		for (int i = 0; i < 4; i++) {
 			int px = x + dx[i];
