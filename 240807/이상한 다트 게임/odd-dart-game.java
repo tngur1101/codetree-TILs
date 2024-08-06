@@ -137,30 +137,28 @@ public class Main {
 
     private static void normalize(){
         int sum = 0;
-        int cnt = 0;
+		int cnt = 0;
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				if (map[i][j] != -1) {
+					sum += map[i][j];
+					cnt++;
+				}
+			}
+		}
 
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                if(map[i][j] != -1){
-                    sum += map[i][j];
-                    cnt++;
-                }
-            }
-        }
-
-        double avg = (double)(sum) /  cnt;
-
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                if(map[i][j] != -1){
-                    if(map[i][j] < avg){
-                        map[i][j] += 1;
-                    } else if(map[i][j] > avg){
-                        map[i][j] -= 1;
-                    }
-                }
-            }
-        }
+		float avg = (float) (sum) / cnt;
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				if (map[i][j] != -1) {
+					if (map[i][j] < avg) {
+						map[i][j] += 1;
+					} else if (map[i][j] > avg) {
+						map[i][j] -= 1;
+					}
+				}
+			}
+		}
     }
 
     private static void check(int r, int c, int v){
