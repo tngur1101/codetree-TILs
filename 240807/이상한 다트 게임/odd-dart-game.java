@@ -92,7 +92,28 @@ public class Main {
     }
 
     private static void rotate(int x, int d, int k){
-        for(int i = x; i <= n; i+=x){
+        // for(int i = x; i <= n; i+=x){
+        //     if(d == 0){
+        //         for(int j = 0; j < k; j++){
+        //             int temp = map[i -1][m-1];
+        //             for(int l = m-1; l >= 1; l--){
+        //                 map[i - 1][l] = map[i -1][l-1];
+        //             }
+        //             map[i - 1][0] = temp;
+        //         }
+        //     } else if( d== 1){
+        //         for(int j = 0; j < k; j++){
+        //             int temp = map[i - 1][0];
+        //             for(int l = 0; l < m-1; l++){
+        //                 map[i - 1][l] = map[i - 1][l+1];
+        //             }
+        //             map[i -1][m-1] = temp;
+        //         }
+        //     }
+        // }
+
+        int i = x;
+        while(i -1 < n){
             if(d == 0){
                 for(int j = 0; j < k; j++){
                     int temp = map[i -1][m-1];
@@ -110,6 +131,7 @@ public class Main {
                     map[i -1][m-1] = temp;
                 }
             }
+            i += x;
         }
     }
 
