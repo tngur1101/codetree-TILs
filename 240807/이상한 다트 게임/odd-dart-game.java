@@ -138,8 +138,8 @@ public class Main {
     private static void normalize(){
         int sum = 0;
 		int cnt = 0;
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
 				if (map[i][j] != -1) {
 					sum += map[i][j];
 					cnt++;
@@ -148,8 +148,8 @@ public class Main {
 		}
 
 		float avg = (float) (sum) / cnt;
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
 				if (map[i][j] != -1) {
 					if (map[i][j] < avg) {
 						map[i][j] += 1;
