@@ -65,30 +65,52 @@ public class Main {
     }
 
     private static void getAnswer(){
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                if(map[i][j] != -1){
-                    answer += map[i][j];
-                }
-            }
-        }
+        for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (map[i][j] != -1) {
+					answer += map[i][j];
+				}
+			}
+		}
     }
 
     private static void simulate(int x, int d, int k){
-        rotate(x,d,k);
+        int tempX = x;
+		while (tempX - 1 < n) { // 회전
+			if (d == 0) { // 시계방향
+				for (int j = 0; j < k; j++) {
+					int temp = map[tempX - 1][m - 1];
+					for (int i = m - 1; i >= 1; i--) {
+						map[tempX - 1][i] = map[tempX - 1][i - 1];
+					}
+					map[tempX - 1][0] = temp;
+				}
+			} else if (d == 1) { // 반시계방향
+				for (int j = 0; j < k; j++) {
+					int temp = map[tempX - 1][0];
+					for (int i = 0; i < m - 1; i++) {
+						map[tempX - 1][i] = map[tempX - 1][i + 1];
+					}
+					map[tempX - 1][m - 1] = temp;
+				}
+			}
 
-        flag = false;
-        visited = new boolean[n][m];
+			tempX += x;
+		}
 
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                if(!visited[i][j] && map[i][j] != -1){
-                    check(i,j,map[i][j]);
-                }
-            }
-        }
+		flag = false;
+		visited = new boolean[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (!visited[i][j] && map[i][j] != -1) {
+					check(i, j, map[i][j]); // 인접확인하기
+				}
+			}
+		}
 
-        if(!flag) normalize();
+		if (!flag) { // 인접하는 값이 없을때, 처리
+			normalize();
+		}
     }
 
     private static void rotate(int x, int d, int k){
@@ -111,28 +133,6 @@ public class Main {
         //         }
         //     }
         // }
-
-        int i = x;
-        while(i -1 < n){
-            if(d == 0){
-                for(int j = 0; j < k; j++){
-                    int temp = map[i -1][m-1];
-                    for(int l = m-1; l >= 1; l--){
-                        map[i - 1][l] = map[i -1][l-1];
-                    }
-                    map[i - 1][0] = temp;
-                }
-            } else if( d== 1){
-                for(int j = 0; j < k; j++){
-                    int temp = map[i - 1][0];
-                    for(int l = 0; l < m-1; l++){
-                        map[i - 1][l] = map[i - 1][l+1];
-                    }
-                    map[i -1][m-1] = temp;
-                }
-            }
-            i += x;
-        }
     }
 
     private static void normalize(){
@@ -161,24 +161,24 @@ public class Main {
 		}
     }
 
-    private static void check(int x, int y, int v){
-        visited[x][y] = true;
-		for (int i = 0; i < 4; i++) {
-			int px = x + dx[i];
-			int py = y + dy[i];
+    private static void check(int r, int c, int v){
+        visited[r][c] = true;
+		for (int d = 0; d < 4; d++) {
+			int nr = r + dx[d];
+			int nc = c + dy[d];
 
-			if (py < 0) {
-				py = m - 1;
-			} else if (py >= m) {
-				py = 0;
+			if (nc < 0) {
+				nc = m - 1;
+			} else if (nc >= m) {
+				nc = 0;
 			}
 
-			if (0 <= px && px < n) {
-				if (!visited[px][py] && map[px][py] == v) {
+			if (0 <= nr && nr < n) {
+				if (!visited[nr][nc] && map[nr][nc] == v) {
 					flag = true;
-					map[x][y] = -1; // -1로 변환
-					map[px][py] = -1;
-					check(px, py, v); // 값이 같으면 반복
+					map[r][c] = -1; // -1로 변환
+					map[nr][nc] = -1;
+					check(nr, nc, v); // 값이 같으면 반복
 				}
 			}
 
