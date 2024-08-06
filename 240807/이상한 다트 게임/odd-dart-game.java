@@ -162,22 +162,26 @@ public class Main {
     }
 
     private static void check(int r, int c, int v){
-        visited[r][c] = true;
-        for(int d = 0; d <4; d++){
-            int nr = r + dx[d];
-            int nc = c + dy[d];
+        visited[x][y] = true;
+		for (int i = 0; i < 4; i++) {
+			int px = x + dx[i];
+			int py = y + dy[i];
 
-            if(nc < 0) nc = m-1;
-            else if(nc >= m) nc = 0;
+			if (py < 0) {
+				py = m - 1;
+			} else if (py >= m) {
+				py = 0;
+			}
 
-            if( nr >= 0 && nr < n){
-                if(!visited[nr][nc] && map[nr][nc] == v){
-                    flag = true;
-                    map[r][c] = -1;
-                    map[nr][nc] = -1;
-                    check(nr, nc, v);
-                }
-            }
-        }
+			if (0 <= px && px < n) {
+				if (!visited[px][py] && map[px][py] == v) {
+					flag = true;
+					map[x][y] = -1; // -1로 변환
+					map[px][py] = -1;
+					check(px, py, v); // 값이 같으면 반복
+				}
+			}
+
+		}
     }
 }
