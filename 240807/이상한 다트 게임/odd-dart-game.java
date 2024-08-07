@@ -75,28 +75,9 @@ public class Main {
     }
 
     private static void simulate(int x, int d, int k){
-        int tempX = x;
-		while (tempX - 1 < n) { // 회전
-			if (d == 0) { // 시계방향
-				for (int j = 0; j < k; j++) {
-					int temp = map[tempX - 1][m - 1];
-					for (int i = m - 1; i >= 1; i--) {
-						map[tempX - 1][i] = map[tempX - 1][i - 1];
-					}
-					map[tempX - 1][0] = temp;
-				}
-			} else if (d == 1) { // 반시계방향
-				for (int j = 0; j < k; j++) {
-					int temp = map[tempX - 1][0];
-					for (int i = 0; i < m - 1; i++) {
-						map[tempX - 1][i] = map[tempX - 1][i + 1];
-					}
-					map[tempX - 1][m - 1] = temp;
-				}
-			}
+        rotate(x,d,k);
 
-			tempX += x;
-		}
+        // print();
 
 		flag = false;
 		visited = new boolean[n][m];
@@ -111,28 +92,31 @@ public class Main {
 		if (!flag) { // 인접하는 값이 없을때, 처리
 			normalize();
 		}
+
+        // System.out.println("===============");
+        // print();
     }
 
     private static void rotate(int x, int d, int k){
-        // for(int i = x; i <= n; i+=x){
-        //     if(d == 0){
-        //         for(int j = 0; j < k; j++){
-        //             int temp = map[i -1][m-1];
-        //             for(int l = m-1; l >= 1; l--){
-        //                 map[i - 1][l] = map[i -1][l-1];
-        //             }
-        //             map[i - 1][0] = temp;
-        //         }
-        //     } else if( d== 1){
-        //         for(int j = 0; j < k; j++){
-        //             int temp = map[i - 1][0];
-        //             for(int l = 0; l < m-1; l++){
-        //                 map[i - 1][l] = map[i - 1][l+1];
-        //             }
-        //             map[i -1][m-1] = temp;
-        //         }
-        //     }
-        // }
+        for(int i = x; i <= n; i+=x){
+            if(d == 0){
+                for(int j = 0; j < k; j++){
+                    int temp = map[i -1][m-1];
+                    for(int l = m-1; l >= 1; l--){
+                        map[i - 1][l] = map[i -1][l-1];
+                    }
+                    map[i - 1][0] = temp;
+                }
+            } else if( d== 1){
+                for(int j = 0; j < k; j++){
+                    int temp = map[i - 1][0];
+                    for(int l = 0; l < m-1; l++){
+                        map[i - 1][l] = map[i - 1][l+1];
+                    }
+                    map[i -1][m-1] = temp;
+                }
+            }
+        }
     }
 
     private static void normalize(){
@@ -147,7 +131,7 @@ public class Main {
 			}
 		}
 
-		float avg = (float) (sum) / cnt;
+		int avg = sum / cnt;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (map[i][j] != -1) {
@@ -184,4 +168,14 @@ public class Main {
 
 		}
     }
+
+    static void print() {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				System.out.print(map[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
 }
