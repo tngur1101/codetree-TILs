@@ -18,9 +18,16 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int temp = lcm(arr[0], arr[1]);
-        for(int i = 2; i < n; i++){
-            temp = lcm(temp, arr[i]);
+        int temp = 0;
+        if(n > 2){
+            temp = lcm(arr[0], arr[1]);
+            for(int i = 2; i < n; i++){
+                temp = lcm(temp, arr[i]);
+            }
+        } else if(n == 2){
+            temp = lcm(arr[0], arr[1]);
+        } else {
+            temp = arr[0];
         }
 
         System.out.println(temp);
