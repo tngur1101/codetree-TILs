@@ -9,7 +9,7 @@ public class Main {
         String s2 = br.readLine();
 
         char[] c1 = s1.toCharArray();
-        char[] c2 = s1.toCharArray();
+        char[] c2 = s2.toCharArray();
 
         if(c1.length != c2.length){
             System.out.println("No");
