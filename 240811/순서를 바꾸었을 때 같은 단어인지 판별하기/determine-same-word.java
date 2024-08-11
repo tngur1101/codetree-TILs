@@ -11,13 +11,17 @@ public class Main {
         char[] c1 = s1.toCharArray();
         char[] c2 = s1.toCharArray();
 
-        Arrays.sort(c1);
-        Arrays.sort(c2);
+        if(c1.length != c2.length){
+            System.out.println("No");
+        } else {
+            Arrays.sort(c1);
+            Arrays.sort(c2);
 
-        s1 = new String(c1);
-        s2 = new String(c2);
+            s1 = new String(c1);
+            s2 = new String(c2);
 
-        if(s1.equals(s2)) System.out.println("Yes");
-        else System.out.println("No");
+            if(s1.equals(s2)) System.out.println("Yes");
+            else System.out.println("No");
+        }
     }
 }
