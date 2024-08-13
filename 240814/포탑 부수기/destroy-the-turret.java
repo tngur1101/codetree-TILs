@@ -69,7 +69,7 @@ public class Main {
     }
 
     private static void simulate(){
-        for(int k = 0; k < K ; k++){
+        for(int k = 1; k <= K ; k++){
 
             boolean isEnd = setTowerAndAttacker(k);
             if(!isEnd) break;
