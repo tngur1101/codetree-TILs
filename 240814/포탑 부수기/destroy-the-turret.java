@@ -198,8 +198,8 @@ public class Main {
             target.isRelevantWithAttack = true;
 //            System.out.println("target.power: "+target.power);
             return;
-        } else {
-            // 포탄공격
+        }
+        // 포탄공격
 //            System.out.println("포탄 공격!");
             target.power -= attacker.power;
             for(int d = 0; d < 8; d++){
@@ -210,7 +210,6 @@ public class Main {
                 map[nr][nc].isRelevantWithAttack = true;
                 map[nr][nc].power -= attacker.power/2;
             }
-        }
     }
 
     private static void repair(){
