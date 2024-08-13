@@ -103,7 +103,7 @@ public class Main {
         attacker = list.get(0);
 
         attacker.power += (N+M);
-        attacker.lastAttack += k;
+        attacker.lastAttack = k;
         attacker.isRelevantWithAttack = true;
 
 //        System.out.println("attacker.power: "+attacker.power);
