@@ -179,9 +179,9 @@ public class Main {
             map[nr][nc].power -= (attacker.power / 2);
 //        System.out.println("공격력 감소 후");
 //        System.out.println("map["+nr+"]["+nc+"].power: "+map[nr][nc].power);
-    }
-    target.power -= attacker.power;
-    target.isRelevantWithAttack = true;
+        }
+        target.power -= attacker.power;
+        target.isRelevantWithAttack = true;
     }
 }
 
