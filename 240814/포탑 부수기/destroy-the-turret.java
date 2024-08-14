@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+
     static class Tower implements Comparable<Tower>{
 
         int r;
@@ -18,20 +19,20 @@ public class Main {
         }
         public int compareTo(Tower t){
             // 만약 공격력이 같다면
-            // if(power == t.power){
-            //     // 만약 최근 공격한 턴 수가 같다면
-            //     if(lastAttack == t.lastAttack){
-            //         // 열과 합이 같다면
-            //         if(r+c == t.r+t.c){
-            //             return t.c - c;
-            //         }
-            //         return (t.r + t.c) - (r+c);
-            //     }
-            //     // 최근 공격한 턴이 더 적은애를 선택
-            //     return t.lastAttack - lastAttack;
-            // }
-            // // 가장 우선 조건인 더 공격력이 작은 순으로 정렬
-            // return power - t.power;
+//            if(power == t.power){
+//                // 만약 최근 공격한 턴 수가 같다면
+//                if(lastAttack == t.lastAttack){
+//                    // 열과 합이 같다면
+//                    if(r+c == t.r+t.c){
+//                        return t.c - c;
+//                    }
+//                    return (t.r + t.c) - (r+c);
+//                }
+//                // 최근 공격한 턴이 더 적은애를 선택
+//                return t.lastAttack - lastAttack;
+//            }
+//            // 가장 우선 조건인 더 공격력이 작은 순으로 정렬
+//            return power - t.power;
             if(power != t.power){
                 return power - t.power;
             }
@@ -54,6 +55,7 @@ public class Main {
     // 우 우하 하 좌하 좌 좌상 상 우상
     static int[] dx = {0, 1, 1, 1, 0, -1, -1, -1};
     static int[] dy = {1, 1, 0, -1, -1, -1, 0, 1};
+
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -85,6 +87,8 @@ public class Main {
         for(int k = 1; k <= K ; k++){
 
             boolean isEnd = setTowerAndAttacker(k);
+//            System.out.println("k: "+k);
+//            System.out.println("isEnd: "+isEnd);
             if(!isEnd) break;
 
             attack();
@@ -98,6 +102,7 @@ public class Main {
         for(int i = 0; i < N; i++){
             for(int j = 0; j < M; j++){
                 if(map[i][j].power > 0){
+//                    System.out.println("map["+i+"]["+j+"].power: "+map[i][j].power);
                     map[i][j].isRelevantWithAttack=false;
                     list.add(map[i][j]);
                 }
@@ -115,6 +120,8 @@ public class Main {
 
         attacker = list.get(0);
 
+//        System.out.println("attacker.r: "+attacker.r+", attacker.c: "+attacker.c+", attacker.power: "+attacker.power);
+
         attacker.power += (N+M);
         attacker.lastAttack = k;
         attacker.isRelevantWithAttack = true;
@@ -123,81 +130,116 @@ public class Main {
 
         target = list.get(list.size()-1);
 
+//        System.out.println("target.r: "+target.r+", target.c: "+target.c+", target.power: "+target.power);
 //        System.out.println("target.power: "+target.power);
         return true;
     }
 
-    private static void attack() {
-    Queue<Tower> q = new LinkedList<>();
-    boolean canAttackWithLaser = false;
-    boolean[][] visited = new boolean[N][M];
-    int[][] prev = new int[N][M];  // 이전 노드를 저장하기 위한 배열
-    for (int[] row : prev) Arrays.fill(row, -1);  // 초기화
+    private static void attack(){
+        Queue<Tower> q = new LinkedList<>();
+        boolean canAttackWithLaser = false;
+        boolean[][] visited = new boolean[N][M];
+        visited[attacker.r][attacker.c] = true;
+        q.offer(attacker);
+//        System.out.println("attacker.r: "+attacker.r+", attacker.c: "+attacker.c);
 
-    visited[attacker.r][attacker.c] = true;
-    q.offer(attacker);
+        while(!q.isEmpty()){
+            Tower curTower = q.poll();
 
-    while (!q.isEmpty()) {
-        Tower curTower = q.poll();
+//            System.out.println("curTower.r: "+curTower.r+", curTower.c: "+curTower.c);
 
-        if (curTower.r == target.r && curTower.c == target.c) {
-            canAttackWithLaser = true;
-            break;
-        }
-
-        for (int d = 0; d < 8; d += 2) {
-            int nr = (curTower.r + dx[d] + N) % N;
-            int nc = (curTower.c + dy[d] + M) % M;
-
-            if (!visited[nr][nc] && map[nr][nc].power > 0) {
-                visited[nr][nc] = true;
-                prev[nr][nc] = curTower.r * M + curTower.c;  // 이전 위치 저장
-                q.offer(new Tower(nr, nc, map[nr][nc].power, 0, false));
-            }
-        }
-    }
-
-    // 레이저 공격
-    if (canAttackWithLaser) {
-        int curR = target.r;
-        int curC = target.c;
-
-        while (curR != attacker.r || curC != attacker.c) {
-            Tower tower = map[curR][curC];
-            int previous = prev[curR][curC];
-            int prevR = previous / M;
-            int prevC = previous % M;
-
-            if (tower.r != target.r || tower.c != target.c) {
-                tower.power -= attacker.power / 2;
-                tower.isRelevantWithAttack = true;
+            if(curTower.r == target.r && curTower.c == target.c){
+                canAttackWithLaser = true;
+                break;
             }
 
-            curR = prevR;
-            curC = prevC;
+            for(int d = 0; d < 8; d+=2){
+//                System.out.println("d: "+d);
+//                System.out.println("dx["+d+"]: "+dx[d]);
+//                System.out.println("dy["+d+"]: "+dy[d]);
+                int nr = (curTower.r + dx[d] + N) % N;
+//                System.out.println("nr: "+nr);
+                int nc = (curTower.c + dy[d] + M) % M;
+//                System.out.println("nc: "+nc);
+//                System.out.println("map["+nr+"]["+nc+"].power: "+map[nr][nc].power);
+//                System.out.println("visited[nr][nc]: "+visited[nr][nc]);
+                if(!visited[nr][nc] && map[nr][nc].power > 0){
+//                    System.out.println("bfs if문 안에 들어옴");
+                    visited[nr][nc] = true;
+                    q.offer(map[nr][nc]);
+                    break;
+                }
+            }
         }
 
-        target.power -= attacker.power;
-        target.isRelevantWithAttack = true;
-    } else {
-        // 포탄공격
-        for (int d = 0; d < 8; d++) {
-            int nr = (target.r + dx[d] + N) % N;
-            int nc = (target.c + dy[d] + M) % M;
-//        System.out.println("nr: "+nr+", nc: "+nc);
-//        System.out.println("공격력 감소 전");
-//        System.out.println("map["+nr+"]["+nc+"].power: "+map[nr][nc].power);
-            if (map[nr][nc].power <= 0 || (nr == attacker.r && nc == attacker.c)) continue;
+//        for(int i = 0; i < N; i++){
+//            for(int j = 0; j < M; j++){
+//                System.out.print(visited[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
 
-            map[nr][nc].isRelevantWithAttack = true;
-            map[nr][nc].power -= (attacker.power / 2);
-//        System.out.println("공격력 감소 후");
-//        System.out.println("map["+nr+"]["+nc+"].power: "+map[nr][nc].power);
+        // 레이저 공격
+        if(canAttackWithLaser){
+//            System.out.println("레이저 공격!");
+            int curR = target.r;
+            int curC = target.c;
+
+//            System.out.println("curR: "+curR);
+//            System.out.println("curC: "+curC);
+
+            while(curR != attacker.r || curC != attacker.c){
+//                System.out.println("laser 공격 while문 안에 들어옴");
+                Tower tower = map[curR][curC];
+
+//                System.out.println("map["+curR+"]["+curC+"].r: "+tower.r+ ", c: "+tower.c+", power: "+tower.power);
+
+                for(int d = 0; d < 8; d+=2){
+                    int prevR = (curR - dx[d] + N) % N;
+//                    System.out.println("curR: "+curR);
+//                    System.out.println("prevR: "+prevR);
+                    int prevC = (curC - dy[d] + M) % M;
+//                    System.out.println("curC: "+curC);
+//                    System.out.println("prevC: "+prevC);
+
+//                    System.out.println("visited[prevR][prevC]: "+visited[prevR][prevC]);
+                    if(visited[prevR][prevC]){
+                        curR = prevR;
+                        curC = prevC;
+                        break;
+                    }
+                }
+//                System.out.println("tower.r: "+tower.r+", tower.c: "+tower.c+", tower.power: "+tower.power);
+                if(tower.r != target.r  || tower.c != target.c){
+                    tower.power -= attacker.power/2;
+                    tower.isRelevantWithAttack = true;
+                }
+            }
+
+            target.power -= attacker.power;
+            target.isRelevantWithAttack = true;
+//            System.out.println("target.power: "+target.power);
+            return;
+        } else {
+            // 포탄공격
+            System.out.println("포탄 공격!");
+            for(int d = 0; d < 8; d++){
+                int nr = (target.r + dx[d] + N) % N;
+                int nc = (target.c + dx[d] + M) % M;
+                // System.out.println("nr: "+nr+", nc: "+nc);
+                // System.out.println("공격력 감소 전");
+                // System.out.println("map["+nr+"]["+nc+"].power: "+map[nr][nc].power);
+                if(map[nr][nc].power <= 0) continue;
+                if(nr == attacker.r && nc == attacker.c)continue;
+                map[nr][nc].isRelevantWithAttack = true;
+                map[nr][nc].power -= (attacker.power/2);
+                // System.out.println("공격력 감소 후");
+                // System.out.println("map["+nr+"]["+nc+"].power: "+map[nr][nc].power);
+            }
+            target.power -= attacker.power;
+            target.isRelevantWithAttack = true;
         }
-        target.power -= attacker.power;
-        target.isRelevantWithAttack = true;
     }
-}
 
     private static void repair(){
         for(int i = 0; i < N; i++){
@@ -212,19 +254,12 @@ public class Main {
     }
 
     private static void getAnswer(){
+//        System.out.println("getAnswer");
         for(int i = 0; i < N; i++){
             for(int j = 0; j < M; j++){
+//                if(map[i][j].power > answer) System.out.println("map["+i+"]["+j+"].power: "+map[i][j].power);
                 answer = Math.max(map[i][j].power, answer);
             }
-        }
-    }
-
-    private static void printMap(){
-        for(int i = 0; i < N; i++){
-            for(int j = 0; j < M; j++){
-                System.out.print(map[i][j].power+" ");
-            }
-            System.out.println();
         }
     }
 }
