@@ -18,20 +18,33 @@ public class Main {
         }
         public int compareTo(Tower t){
             // 만약 공격력이 같다면
-            if(power == t.power){
-                // 만약 최근 공격한 턴 수가 같다면
-                if(lastAttack == t.lastAttack){
-                    // 열과 합이 같다면
-                    if(r+c == t.r+t.c){
-                        return t.c - c;
-                    }
-                    return (t.r + t.c) - (r+c);
-                }
-                // 최근 공격한 턴이 더 적은애를 선택
+            // if(power == t.power){
+            //     // 만약 최근 공격한 턴 수가 같다면
+            //     if(lastAttack == t.lastAttack){
+            //         // 열과 합이 같다면
+            //         if(r+c == t.r+t.c){
+            //             return t.c - c;
+            //         }
+            //         return (t.r + t.c) - (r+c);
+            //     }
+            //     // 최근 공격한 턴이 더 적은애를 선택
+            //     return t.lastAttack - lastAttack;
+            // }
+            // // 가장 우선 조건인 더 공격력이 작은 순으로 정렬
+            // return power - t.power;
+            if(power != t.power){
+                return power - t.power;
+            }
+
+            if(lastAttack != t.lastAttack){
                 return t.lastAttack - lastAttack;
             }
-            // 가장 우선 조건인 더 공격력이 작은 순으로 정렬
-            return power - t.power;
+
+            if(r+c != t.r+t.c){
+                return (t.r + t.c) - (r+c);
+            }
+
+            return t.c - c;
         }
     }
     static int N,M,K;
