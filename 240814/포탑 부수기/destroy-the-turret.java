@@ -222,7 +222,7 @@ public class Main {
             return;
         } else {
             // 포탄공격
-            System.out.println("포탄 공격!");
+            // System.out.println("포탄 공격!");
             for(int d = 0; d < 8; d++){
                 int nr = (target.r + dx[d] + N) % N;
                 int nc = (target.c + dx[d] + M) % M;
