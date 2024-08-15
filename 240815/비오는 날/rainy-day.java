@@ -56,9 +56,13 @@ public class Main {
                 String date = "";
                 if(datas[i].month < 10){
                     month = "0"+datas[i].month;
+                } else {
+                    month = month+datas[i].month;
                 }
                 if(datas[i].date < 10){
                     date = "0"+datas[i].date;
+                } else {
+                    date = date+datas[i].date;
                 }
                 System.out.println(datas[i].year+"-"+month+"-"+date+" "+datas[i].weekDay+" "+datas[i].weather);
                 break;
