@@ -53,10 +53,14 @@ public class Main {
             if(datas[i].weather.equals("Rain")){
                 // System.out.println("if문 안에 들어옴");
                 String month = "";
+                String date = "";
                 if(datas[i].month < 10){
                     month = "0"+datas[i].month;
                 }
-                System.out.println(datas[i].year+"-"+month+"-"+datas[i].date+" "+datas[i].weekDay+" "+datas[i].weather);
+                if(datas[i].date < 10){
+                    date = "0"+datas[i].date;
+                }
+                System.out.println(datas[i].year+"-"+month+"-"+date+" "+datas[i].weekDay+" "+datas[i].weather);
                 break;
             }
         }
