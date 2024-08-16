@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     static class Student implements Comparable<Student>{
-        int idx
+        int idx;
         int height;
         int weight;
         public Student(int idx, int height, int weight){
@@ -26,6 +26,8 @@ public class Main {
 
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
+
+        students = new Student[N];
 
         for(int i = 0; i < N; i++){
             st = new StringTokenizer(br.readLine());
