@@ -21,7 +21,7 @@ public class Main {
         StringTokenizer st;
 
         st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
 
         Student[] students = new Student[N];
 
