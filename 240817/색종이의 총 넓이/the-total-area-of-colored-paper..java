@@ -14,8 +14,8 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         for(int i = 0; i < N; i++){
             st = new StringTokenizer(br.readLine());
-            int r = Integer.parseInt(st.nextToken());
-            int c = Integer.parseInt(st.nextToken());
+            int r = Integer.parseInt(st.nextToken())+100;
+            int c = Integer.parseInt(st.nextToken())+100;
             pastePaper(r,c);
             // printMap(r,c);
         }
