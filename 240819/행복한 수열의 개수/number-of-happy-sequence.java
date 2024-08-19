@@ -37,12 +37,19 @@ public class Main {
     // 행을 체크하는 함수
     // r: 체크할 행의 인덱스
     private static void checkRow(int r){
+        // System.out.println("r: " + r);
         int cnt = 1;
         for(int i = 0; i < N-1; i++){
+            // System.out.println("map["+r+"]["+i+"]: "+map[r][i]);
+            // System.out.println("map["+r+"]["+(i+1)+"]: "+map[r][i+1]);
             if(map[r][i] == map[r][i+1]) cnt++;
+            if(cnt >= M){
+                ans++;
+                return;
+            }
             else cnt=1;
         }
-        if(cnt >= M) ans++;
+        // if(cnt >= M) ans++;
     }
 
     // 열을 체크하는 함수
@@ -51,8 +58,12 @@ public class Main {
         int cnt = 1;
         for(int i = 0; i < N-1; i++){
             if(map[i][c] == map[i+1][c]) cnt++;
+            if(cnt >= M){
+                ans++;
+                return;
+            }
             else cnt=1;
         }
-        if(cnt >= M) ans++;
+        // if(cnt >= M) ans++;
     }
 }
