@@ -66,7 +66,6 @@ public class Main {
                 ans++;
                 return;
             }
-            else cnt=1;
         }
         if(cnt >= M){ans++;return;}
     }
