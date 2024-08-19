@@ -49,7 +49,7 @@ public class Main {
             }
             else cnt=1;
         }
-        // if(cnt >= M) ans++;
+        if(cnt >= M){ans++;return;} 
     }
 
     // 열을 체크하는 함수
@@ -64,6 +64,6 @@ public class Main {
             }
             else cnt=1;
         }
-        // if(cnt >= M) ans++;
+        if(cnt >= M){ans++;return;}
     }
 }
