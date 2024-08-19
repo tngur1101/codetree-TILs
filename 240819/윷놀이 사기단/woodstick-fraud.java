@@ -130,7 +130,7 @@ public class Main {
     // 이동할 위치에 말이 있는지 판단하는 함수
     // 만약 있다면 true를 반환하고 없다면 false를 반환한다.
     private static boolean isEixst(int idx){
-        if(isPieceExist[idx]) return true;
-        return false;
+        if(idx == 21) return false; // 종점은 항상 비어있음
+        return isPieceExist[idx];
     }
 }
