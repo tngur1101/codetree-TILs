@@ -42,12 +42,15 @@ public class Main {
         for(int i = 0; i < N-1; i++){
             // System.out.println("map["+r+"]["+i+"]: "+map[r][i]);
             // System.out.println("map["+r+"]["+(i+1)+"]: "+map[r][i+1]);
-            if(map[r][i] == map[r][i+1]) cnt++;
+            if(map[r][i] != map[r][i+1]) cnt=1;
+            else cnt++;
+            // System.out.println("cnt: "+cnt);
             if(cnt >= M){
+                // System.out.println("answer 증가");
                 ans++;
                 return;
             }
-            else cnt=1;
+            
         }
         if(cnt >= M){ans++;return;} 
     }
@@ -57,7 +60,8 @@ public class Main {
     private static void checkColumn(int c){
         int cnt = 1;
         for(int i = 0; i < N-1; i++){
-            if(map[i][c] == map[i+1][c]) cnt++;
+            if(map[i][c] != map[i+1][c]) cnt=1;
+            else cnt++;
             if(cnt >= M){
                 ans++;
                 return;
