@@ -5,7 +5,7 @@ public class Main {
 
     static int N,M;
     static int[][] map;
-    static int answer = Integer.MIN_VALUE;
+    static int answer = 0;
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
