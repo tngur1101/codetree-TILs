@@ -40,7 +40,7 @@ public class Main {
     }
 
     private static void simualte(){
-        for(int i = N-3; i < N; i++){
+        for(int i = 2; i < N; i++){
             for(int j = 1; j < N-1; j++){
                 // if(i==4 && j == 1){
                 //     System.out.println("i :"+i);
