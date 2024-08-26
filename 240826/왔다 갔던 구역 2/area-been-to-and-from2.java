@@ -36,8 +36,11 @@ public class Main {
                 for(int j = idx - x; j < idx; j++){
                     arr[j] += 1;
                 }
+                idx = idx-x;
             }
         }
+
+        // System.out.println(Arrays.toString(arr));
 
         int answer = 0;
         for(int i = 0; i < arr.length; i++){
