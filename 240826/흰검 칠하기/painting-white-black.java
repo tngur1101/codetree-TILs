@@ -14,7 +14,7 @@ public class Main {
 	}
 	static Tile[] tiles = new Tile[200001];	// 타일 기
 	static int N;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		
