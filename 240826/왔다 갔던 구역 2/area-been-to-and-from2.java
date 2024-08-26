@@ -25,18 +25,22 @@ public class Main {
             int x = Integer.parseInt(st.nextToken());
             String dir = st.nextToken();
 
-            if(dir == "R"){
+            if(dir.equals("R")){
+                // System.out.println("idx 업데이트 이전 idx : " + idx);
                 // 2 R이면 nextIdx = 1002가 되고 이는 2-3구간이다. 따라서 포함하면 안된다.
                 for(int j = idx; j <idx+x; j++){
                     arr[j] += 1;
                 }
                 idx = idx+x;
+                // System.out.println("idx 업데이트 이후 idx : " + idx);
             } else {
+                // System.out.println("idx 업데이트 이전 idx : " + idx);
                 // 6 L이면 nextIdx = 996이 되고 이는 -4 ~ -3구간이다.
                 for(int j = idx - x; j < idx; j++){
                     arr[j] += 1;
                 }
                 idx = idx-x;
+                // System.out.println("idx 업데이트 이후 idx : " + idx);
             }
         }
 
