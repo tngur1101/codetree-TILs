@@ -27,8 +27,8 @@ public class Main {
 		
 		getMaxWidthAndHeight(x1, x2, y1, y2);
 		
-		System.out.println("maxHeight: " + maxHeight);
-		System.out.println("maxWidth: " + maxWidth);
+		// System.out.println("maxHeight: " + maxHeight);
+		// System.out.println("maxWidth: " + maxWidth);
 		
 		System.out.println(getAnswer());
     }
