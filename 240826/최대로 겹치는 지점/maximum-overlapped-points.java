@@ -19,13 +19,15 @@ public class Main {
             int s = Integer.parseInt(st.nextToken());
             int e = Integer.parseInt(st.nextToken());
 
-            for(int j = s; s <= e; s++){
+            for(int j = s; j <= e; j++){
                 arr[j] += 1;
             }
         }
 
+        // System.out.println(Arrays.toString(arr));
+
         int answer = 0;
-        for(int i = 1; i <= N; i++){
+        for(int i = 1; i < arr.length; i++){
             answer = Math.max(answer, arr[i]);
         }
 
