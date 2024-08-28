@@ -3,7 +3,7 @@
 # 🥇 실전 훈련
 |총 문제 수|티어|유형|
 |---:|---|---|
-|1|![Gold3][g3] ~ ![Gold3][g3]|`Simulation` `dx dy technique`|
+|1|![Gold3][g3] ~ ![Gold3][g3]|`dx dy technique` `Simulation`|
 
 |기록분류|이름|티어|유형|상태|최근 제출 코드|
 |---|---|---|---|---|---|
